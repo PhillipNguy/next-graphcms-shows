@@ -13,6 +13,11 @@ const CardStyle = css`
   border-radius: 10px;
   transition: 150ms ease;
 
+
+  @media all and (max-width: 640px) {
+    width: 80%;
+  }
+
   :hover,
   :focus,
   :active {
@@ -35,6 +40,7 @@ const CardStyle = css`
 const StyledGrid = styled.div`
   display: flex;
   align-items: center;
+  justify-content: center;
   flex-direction: column;
   flex-wrap: wrap;
   margin-top: 1rem;
