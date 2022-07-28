@@ -3,8 +3,16 @@ import { Grid, Card } from '@c/Grid'
 import { Title } from '@c/Title'
 import { getAllShows } from '@l/graphcms'
 import { useState, useEffect } from 'react'
+import { formatUSD, formatDate } from '@l/utils'
 
 export default function Shows({ shows }) {
+
+  const [gridToggle, setGridToggle] = useState(true)
+
+  function toggleButton () {
+    gridToggle ? setGridToggle(false) : setGridToggle(true);
+    console.log(gridToggle)
+  }
 
   // const [sortOption, setSortOption] = useState("title_DESC")
 
@@ -35,11 +43,15 @@ export default function Shows({ shows }) {
       </select>
       <input type="submit" value="Sort"/> */}
 
-      <Grid>
+      <button onClick={toggleButton}>Toggle Grid</button>
+
+      <Grid gridToggle={gridToggle}>
         {
           shows.map(show => (
           <Card href={`/show/${show.slug}`} header={show.title} key={show.id}>
             <p>{show.artists.map(({ fullName }) => fullName).join(', ')}</p>
+            <span>{formatDate(show.scheduledStartTime)}</span>
+            {/* <span>{formatUSD(show.ticketPrice)}</span> */}
           </Card>
         ))}
       </Grid>

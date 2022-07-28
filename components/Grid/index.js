@@ -13,6 +13,7 @@ const CardStyle = css`
   border-radius: 10px;
   transition: 150ms ease;
 
+  width: 100%;
 
   @media all and (max-width: 640px) {
     width: 80%;
@@ -48,7 +49,7 @@ const StyledGrid = styled.div`
 
   @media (min-width: 600px) {
     width: auto;
-    flex-direction: row;
+    flex-direction: ${props => props.gridToggle === true ? "row" : "column"};
   }
 `
 
@@ -68,9 +69,9 @@ export function Card({ children, header, href, title }) {
   )
 }
 
-export function Grid({ children }) {
+export function Grid({ children, gridToggle }) {
   return (
-    <StyledGrid>
+    <StyledGrid gridToggle={gridToggle}>
       {children}
     </StyledGrid>
   )
