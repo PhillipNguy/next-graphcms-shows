@@ -47,6 +47,7 @@ export default function Shows({ show }) {
       : `http://${link}`;
   };
 
+
   return (
     <Layout title={`${show.title} / next-graphcms-shows`} maxWidth="900px" padding="0 2em">
       <Title>{show.title}</Title>
@@ -82,6 +83,12 @@ export default function Shows({ show }) {
 export async function getServerSideProps({ params }) {
   const { slug } = params
   const show = (await getShowBySlug(slug))
+
+  if (!show) {
+    return {
+      notFound: true,
+    }
+  }
 
   return {
     props: { show },
