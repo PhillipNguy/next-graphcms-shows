@@ -40,6 +40,13 @@ const Portrait = ({ images = [] }) => {
 }
 
 export default function Shows({ show }) {
+
+  const getWorkingLink = link => {
+    return link.startsWith("http://") || link.startsWith("https://") ?
+      link
+      : `http://${link}`;
+  };
+
   return (
     <Layout title={`${show.title} / next-graphcms-shows`} maxWidth="900px" padding="0 2em">
       <Title>{show.title}</Title>
@@ -58,7 +65,7 @@ export default function Shows({ show }) {
           <Portrait images={artist.images} />
 
           <FlexyRow justify="flex-start">
-            <a href={artist.webUrl} target="_blank">Website</a>
+            <a href={getWorkingLink(artist.webUrl)} target="_blank">Website</a>
             <a href={artist.facebookUrl} target="_blank">Facebook</a>
             <a href={artist.instagramUrl} target="_blank">Instagram</a>
             <a href={artist.youTubeUrl} target="_blank">YouTube</a>
