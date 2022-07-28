@@ -50,7 +50,12 @@ export default function Shows({ shows }) {
           shows.map(show => (
           <Card href={`/show/${show.slug}`} header={show.title} key={show.id}>
             <p>{show.artists.map(({ fullName }) => fullName).join(', ')}</p>
+
+            {!gridToggle &&
             <span>{formatDate(show.scheduledStartTime)}</span>
+            }
+
+            {/* Need to get price */}
             {/* <span>{formatUSD(show.ticketPrice)}</span> */}
           </Card>
         ))}
